@@ -2,7 +2,7 @@ import numpy as np
 import pywt
 import pywt.data
 from scipy.signal import butter, lfilter
-ass SignalProcess:
+class SignalProcess:
     def __init__(self):
         self.fs = 800000 * 50
         self.high_cut = 10e4
@@ -56,10 +56,10 @@ ass SignalProcess:
     	corona_start = non_zero_indices[:-1][(non_zero[:-1] > 0) & within_max_distance & beyond_max_ratio] 
     	ranges = [np.arange(i,i + 100) for i in corona_start]
     	if ranges:
-    		zero_indices = np.unique(np.concatenate(ranges))
-        	zero_indices = zero_indices[zero_indices < data_size]
-        	copied = np.copy(data)
-        	copied[zero_indices] = 0
+            zero_indices = np.unique(np.concatenate(ranges))
+            zero_indices = zero_indices[zero_indices < data_size]
+            copied = np.copy(data)
+            copied[zero_indices] = 0
     	else:
-        	copied = np.copy(data)
+            copied = np.copy(data)
     	return copied
